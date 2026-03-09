@@ -61,6 +61,7 @@ var (
 	// Network chain IDs
 	ChainIDBase        = big.NewInt(8453)
 	ChainIDBaseSepolia = big.NewInt(84532)
+	ChainIDEthSepolia  = big.NewInt(11155111)
 	ChainIDMegaETH     = big.NewInt(4326)
 	ChainIDMonad       = big.NewInt(143)
 
@@ -95,16 +96,24 @@ var (
 				Decimals: DefaultDecimals,
 			},
 		},
-		// MegaETH Mainnet (uses Permit2 instead of EIP-3009, supports EIP-2612)
+		// Ethereum Sepolia Testnet
+		"eip155:11155111": {
+			ChainID: ChainIDEthSepolia,
+			DefaultAsset: AssetInfo{
+				Address:  "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238", // USDC on Ethereum Sepolia
+				Name:     "USDC",
+				Version:  "2",
+				Decimals: DefaultDecimals,
+			},
+		},
+		// MegaETH Mainnet
 		"eip155:4326": {
 			ChainID: ChainIDMegaETH,
 			DefaultAsset: AssetInfo{
-				Address:             "0xFAfDdbb3FC7688494971a79cc65DCa3EF82079E7", // USDM (MegaUSD)
-				Name:                "MegaUSD",
-				Version:             "1",
-				Decimals:            18,
-				AssetTransferMethod: AssetTransferMethodPermit2,
-				SupportsEip2612:     true,
+				Address:  "0xFAfDdbb3FC7688494971a79cc65DCa3EF82079E7", // USDM (MegaUSD)
+				Name:     "MegaUSD",
+				Version:  "1",
+				Decimals: 18,
 			},
 		},
 		// Monad Mainnet
