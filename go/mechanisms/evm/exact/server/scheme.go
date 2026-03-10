@@ -141,8 +141,11 @@ func (s *ExactEvmScheme) parseMoneyToDecimal(price x402.Price) (float64, error) 
 		// Remove currency symbols
 		cleanPrice := strings.TrimSpace(v)
 		cleanPrice = strings.TrimPrefix(cleanPrice, "$")
+		cleanPrice = strings.TrimPrefix(cleanPrice, "₩")
 		cleanPrice = strings.TrimSuffix(cleanPrice, " USD")
 		cleanPrice = strings.TrimSuffix(cleanPrice, " USDC")
+		cleanPrice = strings.TrimSuffix(cleanPrice, " KRW")
+		cleanPrice = strings.TrimSuffix(cleanPrice, " KRGX")
 		cleanPrice = strings.TrimSpace(cleanPrice)
 
 		// Parse as float
