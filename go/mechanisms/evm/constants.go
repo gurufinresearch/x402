@@ -97,11 +97,20 @@ var (
 			},
 		},
 		// Ethereum Sepolia Testnet
+		// "eip155:11155111": {
+		// 	ChainID: ChainIDEthSepolia,
+		// 	DefaultAsset: AssetInfo{
+		// 		Address:  "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238", // USDC on Ethereum Sepolia
+		// 		Name:     "USDC",
+		// 		Version:  "2",
+		// 		Decimals: DefaultDecimals,
+		// 	},
+		// },
 		"eip155:11155111": {
 			ChainID: ChainIDEthSepolia,
 			DefaultAsset: AssetInfo{
-				Address:  "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238", // USDC on Ethereum Sepolia
-				Name:     "USDC",
+				Address:  "0x92718316eAC46FBe85E7F59fDda92a0CAd4144C4", // KRGX on Ethereum Sepolia
+				Name:     "KRGX",
 				Version:  "2",
 				Decimals: DefaultDecimals,
 			},
