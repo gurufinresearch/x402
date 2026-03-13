@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/coinbase/x402/go/mechanisms/evm"
+	"github.com/gurufinresearch/x402/go/mechanisms/evm"
 )
 
 // TestHashEIP3009Authorization tests EIP-3009 authorization hashing

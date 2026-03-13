@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/coinbase/x402/go/types"
+	"github.com/gurufinresearch/x402/go/types"
 )
 
 // Mock V1 facilitator for testing

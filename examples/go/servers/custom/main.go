@@ -10,10 +10,10 @@ import (
 	"sync"
 	"time"
 
-	x402 "github.com/coinbase/x402/go"
-	x402http "github.com/coinbase/x402/go/http"
-	evm "github.com/coinbase/x402/go/mechanisms/evm/exact/server"
 	"github.com/gin-gonic/gin"
+	x402 "github.com/gurufinresearch/x402/go"
+	x402http "github.com/gurufinresearch/x402/go/http"
+	evm "github.com/gurufinresearch/x402/go/mechanisms/evm/exact/server"
 	"github.com/joho/godotenv"
 )
 
@@ -324,7 +324,7 @@ func main() {
 	// Initialize the server (queries facilitator for supported schemes)
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
-	
+
 	if err := x402Server.Initialize(ctx); err != nil {
 		fmt.Printf("⚠️  Warning: failed to initialize x402 server: %v\n", err)
 	}
@@ -406,4 +406,3 @@ func main() {
 		os.Exit(1)
 	}
 }
-

@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/coinbase/x402/go/extensions/eip2612gassponsor"
-	"github.com/coinbase/x402/go/mechanisms/evm"
+	"github.com/gurufinresearch/x402/go/extensions/eip2612gassponsor"
+	"github.com/gurufinresearch/x402/go/mechanisms/evm"
 )
 
 func TestValidateEip2612PermitForPayment(t *testing.T) {

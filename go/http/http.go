@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	x402 "github.com/coinbase/x402/go"
+	x402 "github.com/gurufinresearch/x402/go"
 )
 
 // ============================================================================

@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	x402 "github.com/coinbase/x402/go"
-	"github.com/coinbase/x402/go/extensions/paymentidentifier"
-	x402http "github.com/coinbase/x402/go/http"
-	evm "github.com/coinbase/x402/go/mechanisms/evm/exact/client"
-	evmsigners "github.com/coinbase/x402/go/signers/evm"
+	x402 "github.com/gurufinresearch/x402/go"
+	"github.com/gurufinresearch/x402/go/extensions/paymentidentifier"
+	x402http "github.com/gurufinresearch/x402/go/http"
+	evm "github.com/gurufinresearch/x402/go/mechanisms/evm/exact/client"
+	evmsigners "github.com/gurufinresearch/x402/go/signers/evm"
 	"github.com/joho/godotenv"
 )
 
@@ -44,9 +44,9 @@ import (
 // It then caches the resulting PAYMENT-SIGNATURE header so that subsequent
 // requests replay the exact same signed payload — a true retry.
 type PaymentIdentifierTransport struct {
-	Inner                http.RoundTripper
-	PaymentID            string
-	cachedPaymentHeader  string // PAYMENT-SIGNATURE from the first successful attempt
+	Inner               http.RoundTripper
+	PaymentID           string
+	cachedPaymentHeader string // PAYMENT-SIGNATURE from the first successful attempt
 }
 
 func (t *PaymentIdentifierTransport) RoundTrip(req *http.Request) (*http.Response, error) {

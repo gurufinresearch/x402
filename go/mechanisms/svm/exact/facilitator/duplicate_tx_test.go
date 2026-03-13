@@ -3,7 +3,7 @@ package facilitator
 import (
 	"testing"
 
-	"github.com/coinbase/x402/go/mechanisms/svm"
+	"github.com/gurufinresearch/x402/go/mechanisms/svm"
 	"github.com/stretchr/testify/assert"
 )
 

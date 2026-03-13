@@ -8,12 +8,12 @@ import (
 	"net/http"
 	"time"
 
-	x402 "github.com/coinbase/x402/go"
-	x402http "github.com/coinbase/x402/go/http"
-	evm "github.com/coinbase/x402/go/mechanisms/evm/exact/client"
-	svm "github.com/coinbase/x402/go/mechanisms/svm/exact/client"
-	evmsigners "github.com/coinbase/x402/go/signers/evm"
-	svmsigners "github.com/coinbase/x402/go/signers/svm"
+	x402 "github.com/gurufinresearch/x402/go"
+	x402http "github.com/gurufinresearch/x402/go/http"
+	evm "github.com/gurufinresearch/x402/go/mechanisms/evm/exact/client"
+	svm "github.com/gurufinresearch/x402/go/mechanisms/svm/exact/client"
+	evmsigners "github.com/gurufinresearch/x402/go/signers/evm"
+	svmsigners "github.com/gurufinresearch/x402/go/signers/svm"
 )
 
 /**

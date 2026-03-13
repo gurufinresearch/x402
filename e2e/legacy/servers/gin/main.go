@@ -9,9 +9,9 @@ import (
 	"syscall"
 	"time"
 
-	x402gin "github.com/coinbase/x402/go/pkg/gin"
-	"github.com/coinbase/x402/go/pkg/types"
 	"github.com/gin-gonic/gin"
+	x402gin "github.com/gurufinresearch/x402/go/pkg/gin"
+	"github.com/gurufinresearch/x402/go/pkg/types"
 	"github.com/joho/godotenv"
 )
 
