@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/coinbase/x402/go/mechanisms/evm"
+	"github.com/gurufinresearch/x402/go/mechanisms/evm"
 )
 
 // GetEvmChainId returns the chain ID for a v1 legacy network name.

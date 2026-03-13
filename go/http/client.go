@@ -10,8 +10,8 @@ import (
 	"strings"
 	"sync"
 
-	x402 "github.com/coinbase/x402/go"
-	"github.com/coinbase/x402/go/types"
+	x402 "github.com/gurufinresearch/x402/go"
+	"github.com/gurufinresearch/x402/go/types"
 )
 
 // ============================================================================

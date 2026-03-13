@@ -8,16 +8,16 @@ import (
 	"syscall"
 	"time"
 
-	x402 "github.com/coinbase/x402/go"
-	"github.com/coinbase/x402/go/extensions/bazaar"
-	"github.com/coinbase/x402/go/extensions/eip2612gassponsor"
-	"github.com/coinbase/x402/go/extensions/erc20approvalgassponsor"
-	"github.com/coinbase/x402/go/extensions/types"
-	x402http "github.com/coinbase/x402/go/http"
-	ginmw "github.com/coinbase/x402/go/http/gin"
-	evm "github.com/coinbase/x402/go/mechanisms/evm/exact/server"
-	svm "github.com/coinbase/x402/go/mechanisms/svm/exact/server"
 	ginfw "github.com/gin-gonic/gin"
+	x402 "github.com/gurufinresearch/x402/go"
+	"github.com/gurufinresearch/x402/go/extensions/bazaar"
+	"github.com/gurufinresearch/x402/go/extensions/eip2612gassponsor"
+	"github.com/gurufinresearch/x402/go/extensions/erc20approvalgassponsor"
+	"github.com/gurufinresearch/x402/go/extensions/types"
+	x402http "github.com/gurufinresearch/x402/go/http"
+	ginmw "github.com/gurufinresearch/x402/go/http/gin"
+	evm "github.com/gurufinresearch/x402/go/mechanisms/evm/exact/server"
+	svm "github.com/gurufinresearch/x402/go/mechanisms/svm/exact/server"
 	"github.com/joho/godotenv"
 )
 
@@ -126,11 +126,11 @@ func main() {
 					Network: evmNetwork,
 				},
 			},
-		Extensions: map[string]interface{}{
-			types.BAZAAR.Key(): discoveryExtension,
+			Extensions: map[string]interface{}{
+				types.BAZAAR.Key(): discoveryExtension,
+			},
 		},
-	},
-	"GET /protected-svm": {
+		"GET /protected-svm": {
 			Accepts: x402http.PaymentOptions{
 				{
 					Scheme:  "exact",
@@ -139,11 +139,11 @@ func main() {
 					Network: svmNetwork,
 				},
 			},
-		Extensions: map[string]interface{}{
-			types.BAZAAR.Key(): discoveryExtension,
+			Extensions: map[string]interface{}{
+				types.BAZAAR.Key(): discoveryExtension,
+			},
 		},
-	},
-	// Permit2 endpoint - explicitly requires Permit2 flow instead of EIP-3009
+		// Permit2 endpoint - explicitly requires Permit2 flow instead of EIP-3009
 		"GET /protected-permit2": {
 			Accepts: x402http.PaymentOptions{
 				{
@@ -152,7 +152,7 @@ func main() {
 					Network: evmNetwork,
 					// Use pre-parsed price with assetTransferMethod to force Permit2
 					Price: map[string]interface{}{
-						"amount": "1000", // 0.001 USDC (6 decimals)
+						"amount": "1000",                                       // 0.001 USDC (6 decimals)
 						"asset":  "0x036CbD53842c5426634e7929541eC2318f3dCF7e", // Base Sepolia USDC
 						"extra": map[string]interface{}{
 							"assetTransferMethod": "permit2",
@@ -161,9 +161,9 @@ func main() {
 				},
 			},
 			Extensions: func() map[string]interface{} {
-			ext := map[string]interface{}{
-				types.BAZAAR.Key(): discoveryExtension,
-			}
+				ext := map[string]interface{}{
+					types.BAZAAR.Key(): discoveryExtension,
+				}
 				// Add EIP-2612 gas sponsoring extension
 				for k, v := range eip2612gassponsor.DeclareEip2612GasSponsoringExtension() {
 					ext[k] = v
@@ -171,35 +171,35 @@ func main() {
 				return ext
 			}(),
 		},
-	// Permit2 ERC-20 approval endpoint - requires Permit2 flow with a generic ERC-20 token (no EIP-2612)
-	"GET /protected-permit2-erc20": {
-		Accepts: x402http.PaymentOptions{
-			{
-				Scheme:  "exact",
-				PayTo:   evmPayeeAddress,
-				Network: evmNetwork,
-				// Use MockGenericERC20 token that does NOT implement EIP-2612
-				Price: map[string]interface{}{
-					"amount": "1000", // smallest unit
-					"asset":  "0xeED520980fC7C7B4eB379B96d61CEdea2423005a", // MockGenericERC20 on Base Sepolia
-					"extra": map[string]interface{}{
-						"assetTransferMethod": "permit2",
+		// Permit2 ERC-20 approval endpoint - requires Permit2 flow with a generic ERC-20 token (no EIP-2612)
+		"GET /protected-permit2-erc20": {
+			Accepts: x402http.PaymentOptions{
+				{
+					Scheme:  "exact",
+					PayTo:   evmPayeeAddress,
+					Network: evmNetwork,
+					// Use MockGenericERC20 token that does NOT implement EIP-2612
+					Price: map[string]interface{}{
+						"amount": "1000",                                       // smallest unit
+						"asset":  "0xeED520980fC7C7B4eB379B96d61CEdea2423005a", // MockGenericERC20 on Base Sepolia
+						"extra": map[string]interface{}{
+							"assetTransferMethod": "permit2",
+						},
 					},
 				},
 			},
+			Extensions: func() map[string]interface{} {
+				ext := map[string]interface{}{
+					types.BAZAAR.Key(): discoveryExtension,
+				}
+				// Advertise ERC-20 approval gas sponsoring (for tokens without EIP-2612)
+				for k, v := range erc20approvalgassponsor.DeclareExtension() {
+					ext[k] = v
+				}
+				return ext
+			}(),
 		},
-		Extensions: func() map[string]interface{} {
-			ext := map[string]interface{}{
-				types.BAZAAR.Key(): discoveryExtension,
-			}
-			// Advertise ERC-20 approval gas sponsoring (for tokens without EIP-2612)
-			for k, v := range erc20approvalgassponsor.DeclareExtension() {
-				ext[k] = v
-			}
-			return ext
-		}(),
-	},
-}
+	}
 
 	// Apply payment middleware with detailed error logging
 	r.Use(ginmw.X402Payment(ginmw.Config{
@@ -210,7 +210,7 @@ func main() {
 			{Network: svmNetwork, Server: svm.NewExactSvmScheme()},
 		},
 		SyncFacilitatorOnStart: true,
-		Timeout:    30 * time.Second,
+		Timeout:                30 * time.Second,
 		ErrorHandler: func(c *ginfw.Context, err error) {
 			// Log detailed error information for debugging
 			fmt.Printf("❌ [E2E SERVER ERROR] Payment error occurred\n")

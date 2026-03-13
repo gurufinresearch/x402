@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/coinbase/x402/go/types"
+	"github.com/gurufinresearch/x402/go/types"
 )
 
 // mockPaywallProvider is a test PaywallProvider that returns configurable HTML.

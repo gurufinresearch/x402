@@ -129,8 +129,8 @@ http/your_framework/
 package yourframework
 
 import (
-    x402 "github.com/coinbase/x402/go"
-    x402http "github.com/coinbase/x402/go/http"
+    x402 "github.com/gurufinresearch/x402/go"
+    x402http "github.com/gurufinresearch/x402/go/http"
 )
 
 // Middleware creates x402 payment middleware for YourFramework.
@@ -272,7 +272,7 @@ This runs both `go fmt` and `goimports`.
 Use typed errors from `errors.go`:
 
 ```go
-import x402 "github.com/coinbase/x402/go"
+import x402 "github.com/gurufinresearch/x402/go"
 
 if err != nil {
     return nil, x402.NewVerificationError("invalid signature", err)
@@ -333,9 +333,9 @@ module github.com/coinbase/x402/examples/go/your-example
 
 go 1.24
 
-require github.com/coinbase/x402/go v0.0.0
+require github.com/gurufinresearch/x402/go v0.0.0
 
-replace github.com/coinbase/x402/go => ../../../go
+replace github.com/gurufinresearch/x402/go => ../../../go
 ```
 
 ## Documentation

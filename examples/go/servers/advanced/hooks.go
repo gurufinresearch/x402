@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	x402 "github.com/coinbase/x402/go"
-	x402http "github.com/coinbase/x402/go/http"
-	ginmw "github.com/coinbase/x402/go/http/gin"
-	evm "github.com/coinbase/x402/go/mechanisms/evm/exact/server"
 	ginfw "github.com/gin-gonic/gin"
+	x402 "github.com/gurufinresearch/x402/go"
+	x402http "github.com/gurufinresearch/x402/go/http"
+	ginmw "github.com/gurufinresearch/x402/go/http/gin"
+	evm "github.com/gurufinresearch/x402/go/mechanisms/evm/exact/server"
 	"github.com/joho/godotenv"
 )
 
@@ -48,7 +48,7 @@ func main() {
 	// Create EVM scheme server
 	evmScheme := evm.NewExactEvmScheme()
 
-	// Create x402 resource server with hooks 
+	// Create x402 resource server with hooks
 	server := x402.Newx402ResourceServer(
 		x402.WithFacilitatorClient(facilitatorClient),
 	).
