@@ -59,8 +59,10 @@ const (
 
 var (
 	// Network chain IDs
+	ChainIDGuruTestnet = big.NewInt(631)
 	ChainIDBase        = big.NewInt(8453)
 	ChainIDBaseSepolia = big.NewInt(84532)
+	ChainIDEthSepolia  = big.NewInt(11155111)
 	ChainIDMegaETH     = big.NewInt(4326)
 	ChainIDMonad       = big.NewInt(143)
 
@@ -75,6 +77,16 @@ var (
 	// NOTE: Currently only EIP-3009 supporting stablecoins can be used.
 	// Generic ERC-20 support via EIP-2612/Permit2 is planned but not yet implemented.
 	NetworkConfigs = map[string]NetworkConfig{
+		// Guru Testnet
+		"eip155:631": {
+			ChainID: ChainIDGuruTestnet,
+			DefaultAsset: AssetInfo{
+				Address:  "0x1d3c04A93563eCED4570F3D8CEAfa080b3BD0B14", // KRGX on Guru Testnet
+				Name:     "KRGX",
+				Version:  "2",
+				Decimals: DefaultDecimals,
+			},
+		},
 		// Base Mainnet
 		"eip155:8453": {
 			ChainID: ChainIDBase,
@@ -95,16 +107,24 @@ var (
 				Decimals: DefaultDecimals,
 			},
 		},
-		// MegaETH Mainnet (uses Permit2 instead of EIP-3009, supports EIP-2612)
+		// Ethereum Sepolia Testnet
+		"eip155:11155111": {
+			ChainID: ChainIDEthSepolia,
+			DefaultAsset: AssetInfo{
+				Address:  "0x92718316eAC46FBe85E7F59fDda92a0CAd4144C4", // KRGX on Ethereum Sepolia
+				Name:     "KRGX",
+				Version:  "2",
+				Decimals: DefaultDecimals,
+			},
+		},
+		// MegaETH Mainnet
 		"eip155:4326": {
 			ChainID: ChainIDMegaETH,
 			DefaultAsset: AssetInfo{
-				Address:             "0xFAfDdbb3FC7688494971a79cc65DCa3EF82079E7", // USDM (MegaUSD)
-				Name:                "MegaUSD",
-				Version:             "1",
-				Decimals:            18,
-				AssetTransferMethod: AssetTransferMethodPermit2,
-				SupportsEip2612:     true,
+				Address:  "0xFAfDdbb3FC7688494971a79cc65DCa3EF82079E7", // USDM (MegaUSD)
+				Name:     "MegaUSD",
+				Version:  "1",
+				Decimals: 18,
 			},
 		},
 		// Monad Mainnet
